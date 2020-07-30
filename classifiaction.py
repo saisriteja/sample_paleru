@@ -48,7 +48,12 @@ def image_loader(image_name):
     image = Image.open(image_name).convert('RGB')
     image = loader(image).float()
     image = image.unsqueeze(0)  #this is for VGG, may not be needed for ResNet
-    return image  #assumes that you're using GPU
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print('device using is ',device)
+    if device == 'cuda':
+      return image.cuda
+    else:
+      return image  #assumes that you're using GPU
 
 model = making_model()
 
