@@ -1,3 +1,18 @@
+import argparse
+
+# Construct the argument parser
+ap = argparse.ArgumentParser()
+
+# Add the arguments to the parser
+ap.add_argument("-img", "--path_to_image", required=True,
+   help="first operand")
+# ap.add_argument("-b", "--path_to_audio", required=False,
+#    help="second operand")
+args = vars(ap.parse_args())
+
+
+path = str(args['path_to_image'])
+
 import matplotlib.pyplot as plt
 import torch
 from torchvision import datasets, transforms
@@ -37,10 +52,11 @@ def image_loader(image_name):
 
 model = making_model()
 
-state_dict = torch.load('checkpoint.pth')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+state_dict = torch.load('checkpoint.pth',map_location=torch.device(device))
 model.load_state_dict(state_dict)
 
-path = str(input())
+
 image = image_loader(path)    
 logps = model(image)
 category  =  {0:'filler',1: 'nonfiller'}
