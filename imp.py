@@ -345,5 +345,5 @@ def plot_cam_grad(model):
         
 def plot_cam_grad_result(model,image):    
     print(image)
-    img = read_img(i)
+    img = read_img(image)
     plot(model=model, cam_func=grad_cam, img=img)
