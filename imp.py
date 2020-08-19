@@ -337,8 +337,13 @@ def read_img(file_path):
 
 def plot_cam_grad(model):
     images = glob('/content/melspectrograms/*.png')
-    for i in images:
+    for i in sorted(images):
         print(i)
         img = read_img(i)
         plot(model=model, cam_func=grad_cam, img=img)
         print(' '.center(150,'-'))
+        
+def plot_cam_grad_result(model,image):    
+    print(image)
+    img = read_img(i)
+    plot(model=model, cam_func=grad_cam, img=img)
