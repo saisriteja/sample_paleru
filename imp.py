@@ -53,7 +53,7 @@ import os
 
 
 
-def resnet_model_dilation(n):
+def resnet_model_dilation(n=2):
     ''' This model is build using keras module from the paper https://arxiv.org/pdf/1910.12590.pdf
     inputs are to be resized of 256,256*4,1 with dilation_rate
     output is the model
