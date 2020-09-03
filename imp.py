@@ -53,7 +53,7 @@ import os
 
 
 
-def resnet_model_dilation():
+def resnet_model_dilation(n):
     ''' This model is build using keras module from the paper https://arxiv.org/pdf/1910.12590.pdf
     inputs are to be resized of 256,256*4,1 with dilation_rate
     output is the model
@@ -189,7 +189,7 @@ def resnet_model_dilation():
     bi2 = Bidirectional(CuDNNLSTM(512))(d1)
     d2 = Dropout(0.4)(bi2)
 
-    out = Dense(2,activation='softmax')(d2)
+    out = Dense(n,activation='softmax')(d2)
 
     # create model
     model = Model(inputs=input, outputs=out)
