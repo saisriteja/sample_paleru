@@ -305,9 +305,9 @@ def clean_dir(path):
 
 
 
-def make_4sec(audio_path):
+def make_4sec(audio_path,n = 4):
     myaudio = AudioSegment.from_file(audio_path , "wav")
-    chunk_length_ms = 4000 # pydub calculates in millisec
+    chunk_length_ms = n*1000 # pydub calculates in millisec
     chunks = make_chunks(myaudio, chunk_length_ms) #Make chunks of four sec
 
     #Export all of the individual chunks as wav files
